@@ -1,7 +1,7 @@
-import "./App.css";
+import Body from "./components/Body";
 
 function App() {
-  return <div class="text-lg text-lime-700">Namaste</div>;
+  return <Body></Body>;
 }
 
 export default App;
