@@ -3,7 +3,10 @@
 - create a creact-react-app
 - configured tailwind css
 - Header
-- Login form
+- Routing
+- SignIn/SignUp form
+- Form Validation
+- useRef hook
 
 <!-- Features -->
 
