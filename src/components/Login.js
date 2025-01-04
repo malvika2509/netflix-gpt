@@ -1,6 +1,11 @@
 import React, { useState, useRef } from "react";
 import Header from "./Header";
 import validate from "../utils/validate";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { auth } from "../utils/firebase";
 
 const Login = () => {
   const [isSignInForm, setSignInForm] = useState(true);
@@ -9,15 +14,16 @@ const Login = () => {
   const email = useRef(null);
   const password = useRef(null);
   const phone = useRef(null);
+  const name = useRef(null);
 
   const OnHandleSubmit = (e) => {
     e.preventDefault(); // Prevent default form submission
-
     // Validate the form data
     const validationErrors = validate(
-      email.current.value,
-      password.current.value,
-      phone.current?.value || "" // Optional phone number
+      name.current?.value || "", // Name
+      email.current.value, // Email
+      password.current.value, // Password
+      phone.current?.value || "" // Phone
     );
 
     // here the validation errors will act like a dictionary and its keys will be extracted like email and password
@@ -25,8 +31,43 @@ const Login = () => {
       setErrors(validationErrors); // Display errors if validation fails
     } else {
       setErrors({});
-      // Proceed with form submission (e.g., API call)
-      console.log("Form submitted successfully!");
+      // Sign in /sign up
+      if (!isSignInForm) {
+        // sign up
+        createUserWithEmailAndPassword(
+          auth,
+          email.current.value,
+          password.current.value
+        )
+          .then((userCredential) => {
+            // Signed up
+            const user = userCredential.user;
+            console.log(user);
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            setErrors(errorCode + " - " + errorMessage);
+          });
+      } else {
+        // sign in
+        signInWithEmailAndPassword(
+          auth,
+          email.current.value,
+          password.current.value
+        )
+          .then((userCredential) => {
+            // Signed in
+            const user = userCredential.user;
+            console.log("Signed in");
+            console.log(user);
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            setErrors(errorCode + " - " + errorMessage);
+          });
+      }
     }
   };
 
@@ -58,6 +99,7 @@ const Login = () => {
           {/* Conditional Name Input */}
           {!isSignInForm && (
             <input
+              ref={name}
               type="text"
               placeholder="Enter your name"
               className="px-6 py-4 mb-4 w-full rounded-md text-gray-400 bg-black bg-opacity-50 border-2 "
