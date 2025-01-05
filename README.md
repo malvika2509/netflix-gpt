@@ -12,6 +12,13 @@
 - Create SignUp USer in account in firebase
 - implement SignIn user API
 - created our redux store with userSlice
+- Implemented Sign Out
+- Update Profile
+- BugFix : Sign Up user displayName and profile feature update
+- BugFix : If the uer is not logged in dont Redirect/Browse else if on browse dont redirect/login
+- using unsubscribe to the onAuthStateChange callback
+- add hardcoded values to constants file
+- 
 
 <!-- Features -->
 

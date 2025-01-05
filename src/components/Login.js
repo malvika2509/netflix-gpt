@@ -1,5 +1,4 @@
 import React, { useState, useRef } from "react";
-import Header from "./Header";
 import validate from "../utils/validate";
 import {
   createUserWithEmailAndPassword,
@@ -10,6 +9,7 @@ import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
+import logo from "../utils/image/logo.jpg";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -108,7 +108,9 @@ const Login = () => {
       />
 
       {/* Header */}
-      <Header />
+      <div className="absolute inset-0 ml-16">
+        <img className="w-40 h-20" src={logo} alt="Logo" />
+      </div>
 
       {/* Login Form */}
       <div className="absolute top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/4 w-96 bg-black bg-opacity-50 rounded-lg p-16">
