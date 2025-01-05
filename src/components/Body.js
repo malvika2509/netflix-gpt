@@ -21,7 +21,7 @@ const AuthListener = () => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      console.log(user);
+      // console.log(user);
       if (user) {
         const { uid, email, displayName } = user;
         // Dispatch user info to Redux store

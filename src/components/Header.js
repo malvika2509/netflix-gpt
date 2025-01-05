@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import logo from "../utils/image/logo.jpg";
 import { auth } from "../utils/firebase";
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
 
@@ -23,9 +22,9 @@ const Header = () => {
       });
   };
   return (
-    <header className="flex items-center justify-between px-6 py-2 bg-black text-white">
+    <header className=" w-screen flex items-center justify-between px-16 py-2  bg-black text-white fixed top-0 left-0 z-50">
       <div>
-        <img className="w-40 h-20" src={logo} alt="Logo" />
+        <img className="w-32 h-12" src={logo} alt="Logo" />
       </div>
       <nav className="hidden md:flex space-x-6">
         <a href="#" className="hover:text-gray-400">
@@ -79,6 +78,7 @@ const Header = () => {
                   Help Centre
                 </li>
                 <hr className="border-gray-700" />
+                {/* Updated Sign-Out Button */}
                 <li
                   className="px-4 py-2 hover:bg-gray-700 cursor-pointer"
                   onClick={onHandleSignOut}

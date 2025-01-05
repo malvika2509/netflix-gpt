@@ -49,7 +49,7 @@ const Login = () => {
           .then((userCredential) => {
             // Signed up
             const user = userCredential.user;
-            console.log(user);
+            // console.log(user);
             updateProfile(user, {
               displayName: name.current.value,
               photoURL: "https://example.com/jane-q-user/profile.jpg",
@@ -79,8 +79,8 @@ const Login = () => {
           .then((userCredential) => {
             // Signed in
             const user = userCredential.user;
-            console.log("Signed in");
-            console.log(user);
+            // console.log("Signed in");
+            // console.log(user);
             navigate("/browse");
           })
           .catch((error) => {
