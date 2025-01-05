@@ -5,6 +5,10 @@ import { useNavigate } from "react-router-dom";
 const Firstpage = () => {
   const navigate = useNavigate(); // Initialize the navigate function
 
+  const onGetStarted = () => {
+    navigate("/login");
+  };
+
   const handleSignInClick = () => {
     navigate("/login"); // Navigate to the login page
   };
@@ -63,6 +67,7 @@ const Firstpage = () => {
             <button
               type="submit"
               className="font-bold bg-red-600 text-lg text-white px-6 py-3 rounded-md hover:bg-red-700 "
+              onClick={onGetStarted}
             >
               <span>Get Started</span>
             </button>
