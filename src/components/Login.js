@@ -125,7 +125,7 @@ const Login = () => {
               ref={name}
               type="text"
               placeholder="Enter your name"
-              className="px-6 py-4 mb-4 w-full rounded-md text-gray-400 bg-black bg-opacity-50 border-2 "
+              className="px-6 py-4 mb-4 w-full roundedd text-gray-400 bg-black bg-opacity-50 border-2 "
             />
           )}
 

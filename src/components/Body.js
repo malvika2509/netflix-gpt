@@ -36,7 +36,7 @@ const AuthListener = () => {
 
     // Clean up the subscription when the component unmounts
     return () => unsubscribe();
-  }, [dispatch, navigate]);
+  }, []);
 
   return <Outlet />; // Render the nested routes
 };
