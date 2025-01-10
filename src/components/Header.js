@@ -22,9 +22,9 @@ const Header = () => {
       });
   };
   return (
-    <header className=" w-screen flex items-center justify-between px-16 py-2  bg-black text-white fixed top-0 left-0 z-50">
+    <header className=" w-screen flex items-center justify-between px-12 py-2  bg-gray-950 text-white fixed top-0 left-0 z-50">
       <div>
-        <img className="w-32 h-12" src={logo} alt="Logo" />
+        <img className="w-36 h-14" src={logo} alt="Logo" />
       </div>
       <nav className="hidden md:flex space-x-6">
         <a href="#" className="hover:text-gray-400">

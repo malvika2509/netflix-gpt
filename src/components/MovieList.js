@@ -27,7 +27,7 @@ const MovieList = ({ title, movies }) => {
 
   return (
     <div className="px-2">
-      <h1 className="text-md py-4 text-white">{title}</h1>
+      <h1 className="text-xl py-4 text-white">{title}</h1>
       <div className="relative">
         <button
           className="absolute left-0 top-1/2 transform -translate-y-1/2 h-full w-12 bg-black opacity-50 p-2 text-white font-extrabold"
