@@ -12,6 +12,7 @@ const Firstpage = () => {
   const handleSignInClick = () => {
     navigate("/login"); // Navigate to the login page
   };
+
   return (
     <div className="relative h-screen">
       {/* Background Image with Gradient Overlay */}
@@ -25,21 +26,25 @@ const Firstpage = () => {
       </div>
 
       {/* Header Section */}
-      <div className="absolute top-0 left-0 z-10 w-full px-32 py-4 flex justify-between items-center">
+      <div className="absolute top-0 left-0 z-10 w-full px-4 sm:px-12 md:px-32 py-4 flex justify-between items-center">
         {/* Logo Section */}
         <div>
-          <img className="w-48 h-30 object-contain" src={logo} alt="Logo" />
+          <img
+            className="w-32 sm:w-40 md:w-48 h-auto object-contain"
+            src={logo}
+            alt="Logo"
+          />
         </div>
 
         {/* Language Dropdown and Sign In Button */}
-        <div className="flex items-center space-x-4">
-          <select className="text-sm bg-black text-white px-3 py-2 rounded-md border-white border-2">
+        <div className="flex items-center space-x-2 sm:space-x-4">
+          <select className="text-sm sm:text-base bg-black text-white px-3 py-2 rounded-md border-white border-2">
             <option value="">English</option>
             <option value="">Hindi</option>
           </select>
           <button
             onClick={handleSignInClick}
-            className="text-sm bg-red-600 text-white px-3 py-2 rounded-md hover:bg-red-700"
+            className="text-sm sm:text-base bg-red-600 text-white px-3 py-2 rounded-md hover:bg-red-700"
           >
             Sign In
           </button>
@@ -47,31 +52,35 @@ const Firstpage = () => {
       </div>
 
       {/* Main Content (Text and Email Input) */}
-      <div className=" absolute inset-0 flex flex-col justify-center items-center text-white">
-        <span className="text-6xl font-extrabold py-6 text-center">
+      <div className="absolute inset-0 flex flex-col justify-center items-center text-white px-4 sm:px-8 md:px-16">
+        <div className="text-4xl sm:text-3xl md:text-6xl font-extrabold py-6 text-center">
           Unlimited movies, <p>TV shows and more</p>
-        </span>
-        <h3 className="text-xl pb-8">Starts at ₹149. Cancel at any time.</h3>
-        <p className="text-lg">
+        </div>
+        <div className="text-lg sm:text-xl md:text-2xl pb-8">
+          Starts at ₹149. Cancel at any time.
+        </div>
+        <div className="text-md sm:text-md md:text-xl">
           Ready to watch? Enter your email to create or restart your membership.
-        </p>
+        </div>
 
-        <div className="flex flex-col items-center space-y-4 mt-4">
-          <form>
+        <div className="lg:flex md:flex justify-center items-center space-y-4 ">
+          <div>
             <input
               type="email"
               placeholder="Email Address"
               required
-              className="px-6 py-4 w-96 rounded-md text-gray-600 mr-4 bg-black bg-opacity-50 border-2 border-gray-600"
+              className="px-4 sm:px-6 py-3 sm:py-4 w-72 sm:w-96 md:w-96 rounded-md text-gray-600 mr-4 bg-black bg-opacity-50 border-2 border-gray-600 mt-4"
             />
+          </div>
+          <div>
             <button
               type="submit"
-              className="font-bold bg-red-600 text-lg text-white px-6 py-3 rounded-md hover:bg-red-700 "
+              className=" font-bold bg-red-600 text-lg sm:text-xl text-white px-6 py-3 rounded-md hover:bg-red-700"
               onClick={onGetStarted}
             >
               <span>Get Started</span>
             </button>
-          </form>
+          </div>
         </div>
       </div>
     </div>

@@ -30,10 +30,10 @@ const MovieList = ({ title, movies }) => {
       <h1 className="text-xl py-4 text-white">{title}</h1>
       <div className="relative">
         <button
-          className="absolute left-0 top-1/2 transform -translate-y-1/2 h-full w-12 bg-black opacity-50 p-2 text-white font-extrabold"
+          className="absolute left-0 top-1/2 transform -translate-y-1/2 h-full w-6 md:w-10 lg:w-12 bg-black opacity-50 p-2 text-white font-extrabold"
           onMouseDown={() => startScroll("left")}
           onMouseUp={stopScroll}
-          onMouseLeave={stopScroll} // Stop scrolling if the mouse leaves the button
+          onMouseLeave={stopScroll}
         >
           <ChevronLeft /> {/* Left Arrow */}
         </button>
@@ -45,10 +45,10 @@ const MovieList = ({ title, movies }) => {
           </div>
         </div>
         <button
-          className="absolute right-0 top-1/2 transform -translate-y-1/2 h-full w-12 bg-black opacity-50 text-white font-extrabold"
+          className="absolute right-0 top-1/2 transform -translate-y-1/2 h-full w-6 md:w-10 lg:w-12 bg-black opacity-50 text-white font-extrabold"
           onMouseDown={() => startScroll("right")}
           onMouseUp={stopScroll}
-          onMouseLeave={stopScroll} // Stop scrolling if the mouse leaves the button
+          onMouseLeave={stopScroll}
         >
           <ChevronRight /> {/* Right Arrow */}
         </button>

@@ -10,7 +10,7 @@ const GptSearchBar = () => {
   const searchText = useRef(null);
   const dispatch = useDispatch();
 
-  // search movie in TMDB
+  // Search movie in TMDB
   const searchMovieTMDB = async (movie) => {
     const data = await fetch(
       "https://api.themoviedb.org/3/search/movie?query=" +
@@ -39,9 +39,9 @@ const GptSearchBar = () => {
 
       const result = await model.generateContent(prompt);
       const gptMovies = result.response.text().split(",");
-      // FOr each movie fetching the Tmdb API
+
+      // For each movie, fetching the Tmdb API
       const promiseArray = gptMovies.map((movie) => searchMovieTMDB(movie));
-      // [Promise, Promise, Promise, Promise, Promise]
 
       const tmdbResults = await Promise.all(promiseArray);
 
@@ -54,20 +54,20 @@ const GptSearchBar = () => {
   };
 
   return (
-    <div className="pt-[35%] md:pt-[10%] flex justify-center">
+    <div className="pt-[35%] md:pt-[10%] flex justify-center px-4 sm:px-6 md:px-8 lg:px-12">
       <form
-        className="w-full md:w-1/2 bg-black grid grid-cols-12"
+        className="w-full max-w-2xl bg-black grid grid-cols-12 gap-4"
         onSubmit={(e) => e.preventDefault()}
       >
         <input
           ref={searchText}
           type="text"
-          className="p-4 m-4 col-span-9"
+          className="p-4 m-4 col-span-12 sm:col-span-9 bg-white text-gray-600 rounded-md"
           placeholder={lang[langKey].gptSearchPlaceholder}
         />
         <button
-          type="button" // Avoid default form submission
-          className="col-span-3 m-4 py-2 px-4 bg-red-700 text-white rounded-lg"
+          type="button"
+          className="col-span-12 m-4 sm:col-span-3 py-2 px-4 bg-red-700 text-white rounded-lg"
           onClick={handleGptSearchClick}
         >
           {lang[langKey].search}

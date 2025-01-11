@@ -9,7 +9,6 @@ const MainContainer = () => {
   if (movies === null) return;
 
   const mainMovie = movies[0];
-  // // console.log("vlah", mainMovie);
 
   return (
     <div>

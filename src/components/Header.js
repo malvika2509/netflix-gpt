@@ -13,10 +13,15 @@ const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
   const onHandleSignOut = () => {
@@ -30,7 +35,6 @@ const Header = () => {
   };
 
   const handleGptSaerchClick = () => {
-    // toggle gpt search
     dispatch(toggleGptSearchView());
   };
 
@@ -39,11 +43,14 @@ const Header = () => {
   };
 
   return (
-    <header className=" w-screen flex items-center justify-between px-12 py-2  bg-gray-950 text-white fixed top-0 left-0 z-50">
+    <header className="w-screen flex items-center justify-between px-4 py-2 bg-gray-950 text-white fixed top-0 left-0 z-50">
+      {/* Logo */}
       <div>
         <img className="w-36 h-14" src={logo} alt="Logo" />
       </div>
-      <div className="hidden md:flex space-x-6 ">
+
+      {/* Desktop Menu */}
+      <div className="hidden md:flex space-x-6">
         <a href="/browse" className="hover:text-gray-400">
           Home
         </a>
@@ -57,6 +64,31 @@ const Header = () => {
           New & Popular
         </a>
       </div>
+
+      {/* Mobile Menu Toggle */}
+      <div className="md:hidden flex items-center">
+        <button onClick={toggleMobileMenu} className="text-white">
+          ☰
+        </button>
+        {isMobileMenuOpen && (
+          <div className="absolute top-16 right-0 bg-black w-48 py-2 px-4 rounded-md shadow-lg">
+            <a href="/browse" className="block py-2 text-white">
+              Home
+            </a>
+            <a href="#" className="block py-2 text-white">
+              TV Shows
+            </a>
+            <a href="#" className="block py-2 text-white">
+              Movies
+            </a>
+            <a href="#" className="block py-2 text-white">
+              New & Popular
+            </a>
+          </div>
+        )}
+      </div>
+
+      {/* Right Side (Search, Language, Profile) */}
       <div className="flex items-center space-x-4">
         {showGptSearch && (
           <div className="relative">
@@ -73,7 +105,7 @@ const Header = () => {
                 <option
                   key={lang.identifier}
                   value={lang.identifier}
-                  className=" bg-black"
+                  className="bg-black"
                 >
                   {lang.name}
                 </option>
@@ -81,6 +113,8 @@ const Header = () => {
             </select>
           </div>
         )}
+
+        {/* Search Icon */}
         <div>
           {!showGptSearch && (
             <button onClick={handleGptSaerchClick}>
@@ -88,6 +122,8 @@ const Header = () => {
             </button>
           )}
         </div>
+
+        {/* Profile Dropdown */}
         <div className="relative">
           <img
             src="https://occ-0-2890-2186.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABXz4LMjJFidX8MxhZ6qro8PBTjmHbxlaLAbk45W1DXbKsAIOwyHQPiMAuUnF1G24CLi7InJHK4Ge4jkXul1xIW49Dr5S7fc.png?r=e6e"
@@ -101,7 +137,6 @@ const Header = () => {
                 <li className="px-4 py-2 hover:bg-gray-700 cursor-pointer">
                   Other Users
                 </li>
-
                 <li className="px-4 py-2 hover:bg-gray-700 cursor-pointer">
                   Children
                 </li>
@@ -119,7 +154,6 @@ const Header = () => {
                   Help Centre
                 </li>
                 <hr className="border-gray-700" />
-                {/* Updated Sign-Out Button */}
                 <li
                   className="px-4 py-2 hover:bg-gray-700 cursor-pointer"
                   onClick={onHandleSignOut}

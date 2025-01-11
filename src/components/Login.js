@@ -17,7 +17,7 @@ const Login = () => {
   const dispatch = useDispatch();
 
   const [isSignInForm, setSignInForm] = useState(true);
-  const [errors, setErrors] = useState({}); // State to track validation errors
+  const [errors, setErrors] = useState({});
 
   const email = useRef(null);
   const password = useRef(null);
@@ -25,21 +25,18 @@ const Login = () => {
   const name = useRef(null);
 
   const OnHandleSubmit = (e) => {
-    e.preventDefault(); // Prevent default form submission
-    // Validate the form data
+    e.preventDefault();
     const validationErrors = validate(
-      name.current?.value || "", // Name
-      email.current.value, // Email
-      password.current.value, // Password
-      phone.current?.value || "" // Phone
+      name.current?.value || "",
+      email.current.value,
+      password.current.value,
+      phone.current?.value || ""
     );
 
-    // here the validation errors will act like a dictionary and its keys will be extracted like email and password
     if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors); // Display errors if validation fails
+      setErrors(validationErrors);
     } else {
       setErrors({});
-      // Sign in /sign up
       if (!isSignInForm) {
         // sign up
         createUserWithEmailAndPassword(
@@ -48,9 +45,7 @@ const Login = () => {
           password.current.value
         )
           .then((userCredential) => {
-            // Signed up
             const user = userCredential.user;
-            // // console.log(user);
             updateProfile(user, {
               displayName: name.current.value,
               photoURL: "https://example.com/jane-q-user/profile.jpg",
@@ -78,10 +73,7 @@ const Login = () => {
           password.current.value
         )
           .then((userCredential) => {
-            // Signed in
             const user = userCredential.user;
-            // // console.log("Signed in");
-            // // console.log(user);
             navigate("/browse");
           })
           .catch((error) => {
@@ -95,24 +87,28 @@ const Login = () => {
 
   const OnToggleSignUp = () => {
     setSignInForm(!isSignInForm);
-    setErrors({}); // Clear errors when toggling between forms
+    setErrors({});
   };
 
   return (
-    <div className="relative">
+    <div className="relative h-screen">
       {/* Background Image */}
       <div className="absolute inset-0 bg-gradient-to-b from-black via-black to-transparent opacity-75"></div>
       <img className="w-full h-full object-cover" src={BG_URL} alt="bg" />
 
       {/* Header */}
-      <div className="absolute inset-0 ml-16">
-        <img className="w-40 h-20" src={logo} alt="Logo" />
+      <div className="absolute inset-0 ml-4 sm:ml-16">
+        <img
+          className="w-32 sm:w-40 h-20 object-contain"
+          src={logo}
+          alt="Logo"
+        />
       </div>
 
       {/* Login Form */}
-      <div className="absolute top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/4 w-96 bg-black bg-opacity-50 rounded-lg p-16">
+      <div className="absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/4 w-80 sm:w-96 bg-black bg-opacity-50 rounded-lg p-8 sm:p-16">
         <form onSubmit={OnHandleSubmit}>
-          <h2 className="text-white text-3xl font-bold mb-6 text-left">
+          <h2 className="text-white text-2xl sm:text-3xl font-bold mb-6 text-left">
             {isSignInForm ? "Sign In" : "Sign Up"}
           </h2>
 
@@ -122,7 +118,7 @@ const Login = () => {
               ref={name}
               type="text"
               placeholder="Enter your name"
-              className="px-6 py-4 mb-4 w-full roundedd text-gray-400 bg-black bg-opacity-50 border-2 "
+              className="px-6 py-4 mb-4 w-full rounded-md text-gray-400 bg-black bg-opacity-50 border-2"
             />
           )}
 
@@ -180,6 +176,7 @@ const Login = () => {
           >
             {isSignInForm ? "Sign In" : "Sign Up"}
           </button>
+
           <p className="text-white flex py-4">
             {isSignInForm ? "New to Netflix?" : "Already a User?"}
             <button

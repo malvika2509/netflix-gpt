@@ -1,18 +1,33 @@
 import { BG_URL } from "../utils/constants";
 import GptMovieSuggestions from "./GptMovieSuggestions";
 import GptSearchBar from "./GptSearchBar";
+import Footer from "./Footer";
 
 const GPTSearch = () => {
   return (
     <>
-      <div className="fixed -z-10">
-        <img className="" src={BG_URL} alt="logo" />
+      {/* Background Image */}
+      <div className="fixed top-0 left-0 w-full h-full -z-10">
+        <img
+          className="w-full h-full object-cover"
+          src={BG_URL}
+          alt="Background"
+        />
       </div>
-      <div className="">
+
+      {/* Main Content */}
+      <div className="relative w-full min-h-screen pt-1 px-4 sm:px-8 md:px-16 lg:px-24 flex flex-col">
         <GptSearchBar />
-        <GptMovieSuggestions />
+        {/* Add flex-grow to allow content to take available space */}
+        <div className="flex-grow">
+          <GptMovieSuggestions />
+        </div>
+
+        {/* Footer should be at the bottom */}
+        <Footer />
       </div>
     </>
   );
 };
+
 export default GPTSearch;
