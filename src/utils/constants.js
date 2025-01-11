@@ -53,3 +53,5 @@ export const SUPPORTED_LANGUAGES = [
   { identifier: "hindi", name: "Hindi" },
   { identifier: "spanish", name: "Spanish" },
 ];
+
+export const gemAPI_Key = "AIzaSyDAfMbXWeB_4RYw1GiQZ4wJ58OOZEBkSh4";
