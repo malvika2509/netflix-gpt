@@ -56,9 +56,6 @@ const Header = () => {
         <a href="#" className="hover:text-gray-400">
           New & Popular
         </a>
-        <a href="#" className="hover:text-gray-400">
-          My List
-        </a>
       </div>
       <div className="flex items-center space-x-4">
         {showGptSearch && (

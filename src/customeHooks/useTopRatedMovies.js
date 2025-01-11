@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { topRated_api } from "../utils/constants";
+import { Movie_API } from "../utils/constants";
 import { useDispatch } from "react-redux";
 import { addTopRated } from "../utils/movieSlice";
 
@@ -9,7 +9,7 @@ const useTopRatedMovies = () => {
   const getTopRatedMovies = async () => {
     const data = await fetch(
       "https://api.themoviedb.org/3/movie/top_rated?page=1",
-      topRated_api
+      Movie_API
     );
     const json = await data.json();
     dispatch(addTopRated(json.results));
