@@ -3,10 +3,17 @@ import logo from "../utils/image/logo.jpg";
 import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
+import { Search } from "lucide-react";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleGptSearchView } from "../utils/gptSlice";
+import { SUPPORTED_LANGUAGES } from "../utils/constants";
+import { changeLanguage } from "../utils/configSlice";
 
 const Header = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -21,13 +28,23 @@ const Header = () => {
         navigate("/error");
       });
   };
+
+  const handleGptSaerchClick = () => {
+    // toggle gpt search
+    dispatch(toggleGptSearchView());
+  };
+
+  const handleLanguageChange = (e) => {
+    dispatch(changeLanguage(e.target.value));
+  };
+
   return (
     <header className=" w-screen flex items-center justify-between px-12 py-2  bg-gray-950 text-white fixed top-0 left-0 z-50">
       <div>
         <img className="w-36 h-14" src={logo} alt="Logo" />
       </div>
-      <nav className="hidden md:flex space-x-6">
-        <a href="#" className="hover:text-gray-400">
+      <div className="hidden md:flex space-x-6 ">
+        <a href="/browse" className="hover:text-gray-400">
           Home
         </a>
         <a href="#" className="hover:text-gray-400">
@@ -42,11 +59,38 @@ const Header = () => {
         <a href="#" className="hover:text-gray-400">
           My List
         </a>
-        <a href="#" className="hover:text-gray-400">
-          Browse by Languages
-        </a>
-      </nav>
+      </div>
       <div className="flex items-center space-x-4">
+        {showGptSearch && (
+          <div className="relative">
+            <label htmlFor="languages" className="sr-only">
+              Browse by Languages
+            </label>
+            <select
+              id="languages"
+              name="languages"
+              className="bg-black text-white rounded-md px-2 m-1 py-2 hover:bg-gray-900 border-red-600 border-2"
+              onChange={handleLanguageChange}
+            >
+              {SUPPORTED_LANGUAGES.map((lang) => (
+                <option
+                  key={lang.identifier}
+                  value={lang.identifier}
+                  className=" bg-black"
+                >
+                  {lang.name}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
+        <div>
+          {!showGptSearch && (
+            <button onClick={handleGptSaerchClick}>
+              <Search color="white" />
+            </button>
+          )}
+        </div>
         <div className="relative">
           <img
             src="https://occ-0-2890-2186.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABXz4LMjJFidX8MxhZ6qro8PBTjmHbxlaLAbk45W1DXbKsAIOwyHQPiMAuUnF1G24CLi7InJHK4Ge4jkXul1xIW49Dr5S7fc.png?r=e6e"

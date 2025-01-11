@@ -30,7 +30,13 @@
 - Embedded the Yotube video and make it autoplay and mute
 - Tailwind Classes to make Main Container look awesome
 - Build Secondary component
-
+- Build Movie List
+- build Movie Card
+- TMDB Image CDN URL
+- Made the Browsre page amazing with Tailwind CSS
+- usePopularMovies Custom hook
+- GPT Search Page
+- GPT Search Bar
 <!-- Features -->
 
 - Login/Sign Up

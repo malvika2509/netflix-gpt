@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 import logo from "../utils/image/logo.jpg";
+import { BG_URL } from "../utils/constants";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -49,7 +50,7 @@ const Login = () => {
           .then((userCredential) => {
             // Signed up
             const user = userCredential.user;
-            // console.log(user);
+            // // console.log(user);
             updateProfile(user, {
               displayName: name.current.value,
               photoURL: "https://example.com/jane-q-user/profile.jpg",
@@ -79,8 +80,8 @@ const Login = () => {
           .then((userCredential) => {
             // Signed in
             const user = userCredential.user;
-            // console.log("Signed in");
-            // console.log(user);
+            // // console.log("Signed in");
+            // // console.log(user);
             navigate("/browse");
           })
           .catch((error) => {
@@ -101,11 +102,7 @@ const Login = () => {
     <div className="relative">
       {/* Background Image */}
       <div className="absolute inset-0 bg-gradient-to-b from-black via-black to-transparent opacity-75"></div>
-      <img
-        className="w-full h-full object-cover"
-        src="https://assets.nflxext.com/ffe/siteui/vlv3/2f5a878d-bbce-451b-836a-398227a34fbf/web/IN-en-20241230-TRIFECTA-perspective_5ab944a5-1a71-4f6d-b341-8699d0491edd_large.jpg"
-        alt="bg"
-      />
+      <img className="w-full h-full object-cover" src={BG_URL} alt="bg" />
 
       {/* Header */}
       <div className="absolute inset-0 ml-16">

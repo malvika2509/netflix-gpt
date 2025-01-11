@@ -3,7 +3,7 @@ import MovieList from "./MovieList";
 
 const SecondaryContainer = () => {
   const movies = useSelector((store) => store.movies);
-  console.log("gvsdyhfgvwuegkwe", movies.upcomingmovies);
+  // console.log("gvsdyhfgvwuegkwe", movies.upcomingmovies);
 
   return (
     <div className="bg-black">
