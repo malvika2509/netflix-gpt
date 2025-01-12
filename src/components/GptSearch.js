@@ -22,9 +22,6 @@ const GPTSearch = () => {
         <div className="flex-grow">
           <GptMovieSuggestions />
         </div>
-
-        {/* Footer should be at the bottom */}
-        <Footer />
       </div>
     </>
   );

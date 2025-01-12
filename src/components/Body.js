@@ -11,12 +11,15 @@ import {
   createBrowserRouter,
   Outlet,
   useNavigate,
+  useLocation,
 } from "react-router-dom";
+
 import ErrorPage from "../utils/error";
 
 // Auth Listener Component
 const AuthListener = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -25,17 +28,24 @@ const AuthListener = () => {
         const { uid, email, displayName } = user;
         // Dispatch user info to Redux store
         dispatch(addUser({ uid, email, displayName }));
-        navigate("/browse"); // Redirect to browse if user is logged in
+
+        // If user is logged in, allow navigation to the requested path or default to "/browse"
+        if (location.pathname === "/login" || location.pathname === "/") {
+          navigate("/browse");
+        }
       } else {
-        // Clear user info and redirect to login
+        // Clear user info
         dispatch(removeUser());
-        navigate("/login");
+
+        // Redirect to login only if the user is accessing a protected route
+        if (location.pathname !== "/login" && location.pathname !== "/") {
+          navigate("/");
+        }
       }
     });
 
-    // Clean up the subscription when the component unmounts
     return () => unsubscribe();
-  }, []);
+  }, [dispatch, navigate, location]);
 
   return <Outlet />; // Render the nested routes
 };
