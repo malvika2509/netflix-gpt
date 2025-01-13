@@ -39,9 +39,20 @@ const MovieList = ({ title, movies }) => {
         </button>
         <div className="flex overflow-x-auto no-scrollbar" ref={scrollRef}>
           <div className="flex">
-            {movies?.map((movie) => (
-              <MovieCart key={movie.id} posterPath={movie.poster_path} />
-            ))}
+            {movies?.map((movie, index) => {
+              console.log("movies", movie); // Log the movie outside JSX
+              return (
+                <MovieCart
+                  key={index}
+                  movieID={movie.id}
+                  posterPath={movie.poster_path}
+                  title={movie.original_title}
+                  lang={movie.original_language}
+                  desc={movie.overview}
+                  rel={movie.release_date}
+                />
+              );
+            })}
           </div>
         </div>
         <button

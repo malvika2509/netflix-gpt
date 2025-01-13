@@ -3,8 +3,9 @@ import { useSelector } from "react-redux";
 import useTrailerVideo from "../customeHooks/useTrailerVideo";
 
 const VideoBackground = (movie_id) => {
-  const trailerVideo = useSelector((store) => store.movies?.trailerVideo);
   useTrailerVideo(movie_id);
+
+  const trailerVideo = useSelector((store) => store.movies?.trailerVideo);
   return (
     <div>
       <iframe

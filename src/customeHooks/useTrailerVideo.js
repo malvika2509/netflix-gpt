@@ -9,9 +9,10 @@ const useTrailerVideo = (movie_id) => {
   const trailerVideo = useSelector((store) => store.movies.trailerVideo);
 
   const getMoviesVideos = async () => {
+    console.log("Video Fetched");
     const video = await fetch(
       `https://api.themoviedb.org/3/movie/
-          ${movie_id.movie_id} 
+          ${movie_id.movie_id || movie_id}
           /videos?language=en-US`,
       Movie_API
     );
@@ -23,7 +24,7 @@ const useTrailerVideo = (movie_id) => {
 
   useEffect(() => {
     !trailerVideo && getMoviesVideos();
-  }, []);
+  }, [movie_id.movie_id, trailerVideo]);
 };
 
 export default useTrailerVideo;
