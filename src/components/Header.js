@@ -54,14 +54,12 @@ const Header = () => {
         <a href="/browse" className="hover:text-gray-400">
           Home
         </a>
+
         <a href="#" className="hover:text-gray-400">
-          TV Shows
+          Contact Us
         </a>
         <a href="#" className="hover:text-gray-400">
-          Movies
-        </a>
-        <a href="#" className="hover:text-gray-400">
-          New & Popular
+          About Us
         </a>
       </div>
 
@@ -75,9 +73,7 @@ const Header = () => {
             <a href="/browse" className="block py-2 text-white">
               Home
             </a>
-            <a href="#" className="block py-2 text-white">
-              TV Shows
-            </a>
+
             <a href="#" className="block py-2 text-white">
               Movies
             </a>
@@ -117,9 +113,14 @@ const Header = () => {
         {/* Search Icon */}
         <div>
           {!showGptSearch && (
-            <button onClick={handleGptSaerchClick}>
-              <Search color="white" />
-            </button>
+            <div onClick={handleGptSaerchClick}>
+              <button>
+                <Search color="white" />
+              </button>
+              <button className="bg-gray-800 text-white p-2 m-2 rounded-lg hover:bg-gray-600">
+                GPT Search
+              </button>
+            </div>
           )}
         </div>
 

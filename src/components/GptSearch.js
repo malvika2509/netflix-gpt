@@ -1,7 +1,6 @@
 import { BG_URL } from "../utils/constants";
 import GptMovieSuggestions from "./GptMovieSuggestions";
 import GptSearchBar from "./GptSearchBar";
-import Footer from "./Footer";
 
 const GPTSearch = () => {
   return (
